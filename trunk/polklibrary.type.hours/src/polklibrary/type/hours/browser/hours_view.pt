@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone"
+	  lang="en">
+<body>
+
+	<metal:block fill-slot="javascript_head_slot">
+        <script>
+            var HoursCache = ${context/cached};
+        </script>
+        <script type="text/javascript" src="++resource++polklibrary.type.hours/opencalendar.js"></script>
+	</metal:block>
+    
+	<metal:block fill-slot="style_slot">
+        <style>
+            .weekly-calendar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+           
+            .calendar-info {
+                background-color: #eee;
+                width: 135px;
+                border: 1px solid #aaa;
+                padding: 10px 5px;
+                text-align: center;
+                position: relative;
+                margin-bottom: 20px;
+            }
+            .calendar-today {
+                border: 2px solid #51baff;
+            }
+            .calendar-today::before {
+                background-color: #51baff;
+                color: white;
+                content: "Today";
+                position: absolute;
+                font-size: 14px;
+                font-weight: bold;
+                bottom: -20px;
+                width: 100%;
+                left: -2px;
+                border: 2px solid #51baff;
+                text-align: center;
+                border-radius: 0 0 5px 5px;
+                z-index: 3;
+            }
+            .calendar-date {
+                font-weight: bold;
+            }
+            .calendar-day {
+                font-weight: bold;
+                font-size: 12px;
+                font-size: italic;
+            }
+            .calendar-time {
+                margin-top: 5px;
+            }
+            .calendar-message {
+                margin-top: 5px;
+                color: green;
+                font-weight: bold;
+            }
+            .calendar-closed {
+                color: darkred;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            .calendar-tbd {
+                color: navy;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            .calendar-navigation {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: row;
+                text-align: center;
+            }
+            .calendar-back, .calendar-next {
+                color: #6b86ad;
+                cursor: pointer;
+                font-size: 70px;
+                height: 60px;
+                width: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+                line-height: 0;
+                -webkit-user-select: none; /* Safari 3.1+ */
+                -moz-user-select: none; /* Firefox 2+ */
+                -ms-user-select: none; /* IE 10+ */
+                user-select: none; /* Standard syntax */
+            }
+            .calendar-back:hover, .calendar-next:hover {
+                color: #79abf3;
+            }
+            .calendar-back {
+                transform: rotateY(180deg);
+            }
+        </style>
+	</metal:block>
+    
+    <metal:content-title fill-slot="content-title" >
+        <h1 class="documentFirstHeading">${context/Title}</h1>
+    </metal:content-title>
+        
+	<metal:content-description fill-slot="content-description">
+        <div class="documentDescription description">${context/Description}</div>
+    </metal:content-description>
+
+	<metal:content fill-slot="content-core">
+        
+        <div id="hours-view" class="column">
+            <div class="col-100" tal:content="structure context/prebody/output|nothing" tal:on-error="nothing"></div>
+            <div class="col-100 weekly-calendar"></div>
+            <div class="col-100 calendar-navigation"> 
+                <div class="calendar-back">&#10151;</div>
+                <div class="calendar-next">&#10151;</div>
+            </div>
+            <div class="col-100" tal:content="structure context/body/output|nothing" tal:on-error="nothing"></div>
+        </div>
+        
+	</metal:content>
+
+</body>
+</html>

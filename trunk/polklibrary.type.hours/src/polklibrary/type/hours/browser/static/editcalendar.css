@@ -1,0 +1,38 @@
+label {
+    display: inline;
+}
+
+#hours-editor{
+    display: none;
+}
+#hours-edit .hours-time{
+    display: inline;
+    width: 100px !important;
+}
+
+#hours-edit .hours-message{
+    display: inline;
+    width: 200px !important;
+}
+
+#hours-edit #hours-editor h3{
+}
+
+#hours-edit textarea[name="hours.csv"] {
+    background-color: #eee;
+}
+
+.hours-close {
+    color: #666;
+}
+
+.hours-help {
+    color: #666;
+    font-style: italic;
+}
+
+
+.time-error { background-color: #ffe8e8 !important;  border-color: red !important; box-shadow: 0 0 3px 1px red !important; }
+.time-good { background-color: #e7ffe7 !important; border-color: green !important; }
+.osh-is-closed,.fond-is-closed,.fox-is-closed { font-weight: bold; color: red; }
+.osh-is-open,.fond-is-open,.fox-is-open { font-weight: bold; color: green; }
